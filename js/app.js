@@ -14,19 +14,19 @@ let loadCarsList = async () => {
     console.error(error);
   }
 };
-// This function uses .map to iterate the cars array and for each car object it generates a <li> that contains the car info like the make, model and price. All the info is concatenated with the .join into a single string. Then i save all of it to a variable called htmlString and i set the ul of the index.html(carList) to it in order to display the info on the page.
+// Im replacing the empty spaces and dashes of the image paths to underscore.
 const imagePath = "./assets/images/";
 const displayCarsInfo = (cars) => {
-  // Update: Im replacing the empty space between the make and the model and by getting a patch for each car.
   cars.forEach((car) => {
     car.image =
       imagePath +
-      car.make.replace(/ /g, "_") +
+      car.make.replace(/-/g, "") +
       "_" +
-      car.model.replace(/ /g, "_") +
+      car.model.replace(/ /g, "_").replace(/-/g, "") +
       ".jpg";
   });
 
+  // This function uses .map to iterate the cars array and for each car object it generates a <li> that contains the car info like the make, model and price. All the info is concatenated with the .join into a single string. Then i save all of it to a variable called htmlString and i set the ul of the index.html(carList) to it in order to display the info on the page.
   const htmlString = cars
     .map((car, index) => {
       return `
